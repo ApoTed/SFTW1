@@ -17,7 +17,7 @@ public class Utilita {
 			do {
 				newUsername=Utilita.leggiStringaNonVuota("inserisci il tuo nuovo nome utente");
 				if(data.checkName(newUsername)==true)
-					System.out.println("questo nome utente non è disponibile");
+					System.out.println("questo nome utente non ï¿½ disponibile");
 			}while(data.checkName(newUsername)==true);
 				
 			String newPassword=Utilita.leggiStringaNonVuota("inserisci la tua nuova password");
@@ -26,7 +26,7 @@ public class Utilita {
 			
 		}
 		for (int i=0;i<3;i++) {
-			//accesso da utente già registrato 3 tentativi
+			//accesso da utente giï¿½ registrato 3 tentativi
 			
 			for (Utente toCompare : data.getListaUtenti()) {
 				if( Utente.sameUtente(toCompare, temp)) {
@@ -52,7 +52,7 @@ public class Utilita {
 	
 	private static Scanner creaScanner() {
         Scanner creato = new Scanner(System.in);
-        creato.useDelimiter(System.getProperty("line.separator"));
+        //creato.useDelimiter(System.getProperty("line.separator"));
         //creato.useDelimiter("\n");
         return creato;
     }
@@ -71,7 +71,7 @@ public class Utilita {
             if (lettura.length() > 0)
                 finito = true;
             else
-                System.out.println("la stringa inserita non può essere vuota");
+                System.out.println("la stringa inserita non puï¿½ essere vuota");
         } while (!finito);
 
         return lettura;
