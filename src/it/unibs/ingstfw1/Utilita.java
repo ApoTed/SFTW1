@@ -26,19 +26,29 @@ public class Utilita {
 			
 		}
 		for (int i=0;i<3;i++) {
-			//accesso da utente gi� registrato 3 tentativi
-			
+			//accesso da utente già registrato 3 tentativi
+			int tentativi = 2 - i;
+			if(tentativi<2){
+				String nameTry=Utilita.leggiStringaNonVuota("inserisci il tuo nome: ");
+				String passwordTry=Utilita.leggiStringaNonVuota("inserisci la tua password: ");
+				temp=new Utente(nameTry, passwordTry);
+			}
 			for (Utente toCompare : data.getListaUtenti()) {
 				if( Utente.sameUtente(toCompare, temp)) {
 					
 					successo=true;
 				}
-				else {
-					int tentativi=2-i;
-					System.out.println("Le credenziali inserite non sono corrette, hai " + tentativi + "tentativi");
-				}
+
 			}
-			
+			if(successo==false) {
+
+				System.out.println("Le credenziali inserite non sono corrette, hai " + tentativi + " tentativi");
+
+
+			}
+			if(successo==true)
+				break;
+
 		}
 		if(successo==false) {
 			System.out.println("Accesso fallito chiudere il programma");
