@@ -18,7 +18,7 @@ public class main {
 		//campiIniziali.add(primo);
 		//campiIniziali.add(primos);
 		Gerarchia testGer=Gerarchia.creaRamo();
-
+		System.out.println(testGer.vediRamo());
 		//Categoria testCat=Categoria.creaCategoria(campiIniziali);
 	//System.out.println(testCat.toStringCategoria());
 	}
