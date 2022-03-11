@@ -37,23 +37,46 @@ public class Gerarchia {
 
             boolean nomeNuovo=false;
             String nomePadre;
+            Categoria padre = new Categoria("","",null);
             do{
                 nomePadre=Utilita.leggiStringaNonVuota("inserisci il nome del padre");
                 if(finale.checkPadreNome(nomePadre)){
                     nomeNuovo=true;
+                    padre=finale.findPadre(nomePadre);
                 }
                 else {
                     System.out.println("non esiste tale padre, scegli uno dei possibili padri");
                     System.out.println(finale.vediPadri());
                 }
             }while(nomeNuovo==false);
+            int figli=finale.numFigli(padre);
+            if(figli==0){
+                System.out.println("si devono inderire 2 sottocategorie perchè il padre non ne ha nessuna per ora");
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+                System.out.println("inserire la seconda sottocategoria di: "+nomePadre);
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+            }
+            else{
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+            }
 
 
-            finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+
             choiceContinue=Utilita.leggiStringaNonVuota("inserisci 1 se vuoi inserire un'altra sottocategoria se hai finito premi 0");
         }
 
         return finale;
+
+    }
+
+    public int numFigli(Categoria padre){
+        int figli=0;
+        for(Categoria x:this.ramo.keySet()){
+            if(this.ramo.get(x).getNome().equals(padre.getNome())){
+                figli++;
+            }
+        }
+        return figli;
 
     }
 
@@ -83,7 +106,7 @@ public class Gerarchia {
     public String vediRamo(){
         ArrayList<Categoria> nonVisti=new ArrayList<Categoria>();
         StringBuffer s=new StringBuffer();
-        s.append("la radice è "+this.radice.getNome());
+        s.append("la radice è "+this.radice.getNome()+". ");
         for(Categoria x: this.ramo.keySet()){
             nonVisti.add(x);
         }
