@@ -46,7 +46,8 @@ public class main {
 		Gerarchia g=new Gerarchia(toto, radice);
 		XmlWriter.domWriter();
 
-		XmlWriter.reader("test", g);
+		//XmlWriter.reader("test", g);
+		XmlRead.domReader("C:\\Users\\apote\\Desktop\\Dom\\testX.xml");
 	}
 
 }
