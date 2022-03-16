@@ -24,7 +24,7 @@ public class Gerarchia {
     public Gerarchia(){
 
     }
-    public static Gerarchia creaRamo(){
+    public static Gerarchia creaRamo(String nomeRadice){
         HashMap<Categoria, Categoria> links=new HashMap<Categoria,Categoria>();
         System.out.println("inserisci i dati della gerarchia radice");
         CampoNativo primo=new CampoNativo("stato di conservazione","",true);
@@ -34,7 +34,7 @@ public class Gerarchia {
         campiIniziali.add(primos);
         Categoria fantoccio=new Categoria("inesistente","",campiIniziali);
         Gerarchia finale= new Gerarchia();
-        Categoria r=Categoria.creaCategoria(fantoccio.getCampiNativi());
+        Categoria r=Categoria.creaCategoria(fantoccio.getCampiNativi(),nomeRadice);
         finale.ramo.put(r,fantoccio);
         finale.setRadice(r);
 
@@ -43,29 +43,41 @@ public class Gerarchia {
         while(choiceContinue.equals("1")){
             System.out.println(finale.vediPadri());
 
-            boolean nomeNuovo=false;
+            boolean nomePadreValido=false;
             String nomePadre;
             Categoria padre = new Categoria("","",null);
             do{
                 nomePadre=Utilita.leggiStringaNonVuota("inserisci il nome del padre");
                 if(finale.checkPadreNome(nomePadre)){
-                    nomeNuovo=true;
+                    nomePadreValido=true;
                     padre=finale.findPadre(nomePadre);
                 }
                 else {
                     System.out.println("non esiste tale padre, scegli uno dei possibili padri");
                     System.out.println(finale.vediPadri());
                 }
-            }while(nomeNuovo==false);
+            }while(nomePadreValido==false);
+            boolean nomeNuovo=false;
+            String nomeCatgoria;
+            do{
+                nomeCatgoria=Utilita.leggiStringaNonVuota("inserisci il nome della categoria");
+                if(finale.checkNomeNuovo(nomeCatgoria)){
+                    nomeNuovo=true;
+                }
+                else{
+                    System.out.println("nome non valido");
+                }
+            }while(!nomeNuovo);
+
             int figli=finale.numFigli(padre);
             if(figli==0){
                 System.out.println("si devono inderire 2 sottocategorie perchè il padre non ne ha nessuna per ora");
-                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
                 System.out.println("inserire la seconda sottocategoria di: "+nomePadre);
-                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
             }
             else{
-                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi()),finale.findPadre(nomePadre));
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
             }
 
 
@@ -75,6 +87,17 @@ public class Gerarchia {
 
         return finale;
 
+    }
+
+    public boolean checkNomeNuovo(String s){
+        boolean nuovo=true;
+        for(Categoria x: this.ramo.keySet()){
+            if(x.getNome().equals(s)){
+                nuovo=false;
+            }
+
+        }
+        return nuovo;
     }
 
 

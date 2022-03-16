@@ -44,12 +44,12 @@ public class main {
 		toto.put(bimbi, radice);
 		toto.put(disegno, bimbi);
 		Gerarchia g=new Gerarchia(toto, radice);
-		XmlWriter.domWriter();
+		//XmlWriter.domWriter();
+		//System.out.println(g.vediRamo());
 
-		XmlWriter.reader("test", g);
+		//XmlWriter.reader("test", g);
 		//XmlRead.domReader("C:\\Users\\apote\\Desktop\\Dom\\testX.xml");
-
-
+		//prova
 		ArrayList<Gerarchia> listaG=new ArrayList<>();
 		listaG.add(g);
 		Sistema sistema=new Sistema(listaG);
@@ -57,7 +57,6 @@ public class main {
 		String[] voci=new String[]{};
 		Menu m=new Menu(titolo,voci);
 		m.MenuConfiguratore(sistema);
-		//prova
 	}
 
 }

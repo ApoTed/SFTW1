@@ -3,6 +3,8 @@ package it.unibs.ingstfw1;
 import java.util.ArrayList;
 
 public class Sistema {
+
+
     private ArrayList <Gerarchia> listaGerarchie=new ArrayList<Gerarchia>();
 
     public Sistema(ArrayList<Gerarchia>_listaGerarchie){
@@ -35,5 +37,15 @@ public class Sistema {
             }
         }
         return null;
+    }
+
+    public boolean checkNomeNuovoRadice(String s){
+        boolean valido=true;
+        for(Gerarchia x:this.listaGerarchie){
+            if(x.getRadice().getNome().equals(s)){
+                valido=false;
+            }
+        }
+        return valido;
     }
 }

@@ -20,8 +20,8 @@ public class Categoria {
 
 
 
-	public static Categoria creaCategoria(ArrayList <CampoNativo> campi){//devo ritornare una categoria
-		String name=Utilita.leggiStringaNonVuota("inserisci nome: ");
+	public static Categoria creaCategoria(ArrayList <CampoNativo> campi, String nomeCat){//devo ritornare una categoria
+
 		ArrayList <CampoNativo> copia=new ArrayList<>();
 		copia.addAll(campi);
 		String choice="1";
@@ -43,12 +43,14 @@ public class Categoria {
 				System.out.println(" questa categoria ha " + copia.size() + " campi");
 
 		}
-		creata=new Categoria(name,descrizione, copia);
+		creata=new Categoria(nomeCat,descrizione, copia);
 
 
 		return creata;
 
 	}
+
+
 
 	public String toStringCategoria() {
 		StringBuffer str = new StringBuffer();
@@ -70,7 +72,7 @@ public class Categoria {
 		return nome;
 	}
 
-
-
-
+	public String getDescrizione() {
+		return descrizione;
+	}
 }

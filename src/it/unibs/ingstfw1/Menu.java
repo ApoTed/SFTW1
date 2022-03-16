@@ -45,7 +45,17 @@ public class Menu {
             risposta = this.scegli();
             switch (risposta){
                 case 1 :
-                    Gerarchia creata=Gerarchia.creaRamo();
+                    String nomeRadice;
+                    boolean nomeRadiceNuovo=false;
+                    do{
+                        nomeRadice=Utilita.leggiStringaNonVuota("inserisci il nome della radice della gerarchia");
+                        if(sistema.checkNomeNuovoRadice(nomeRadice)){
+                            nomeRadiceNuovo=true;
+                        }
+                        else
+                            System.out.println("questo nome è già preso");
+                    }while(!nomeRadiceNuovo);
+                    Gerarchia creata=Gerarchia.creaRamo(nomeRadice);
                     sistema.addGerarchia(creata);
                     break;
                 case 2 :

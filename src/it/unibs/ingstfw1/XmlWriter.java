@@ -100,23 +100,42 @@ public class XmlWriter {
 
             Element sistema= document.createElement("insieme gerarchie");
             document.appendChild(sistema);
-
+            int countGer=0;
             for(Gerarchia g: s.getListaGerarchie()){
-                int count=0;
+
                 Element gerarchia =document.createElement("gerarchia");
                 Attr numberGerarchia= document.createAttribute("id");
-                numberGerarchia.setValue(""+count);
+                numberGerarchia.setValue(""+countGer);
                 sistema.appendChild(gerarchia);
                 ArrayList <Categoria> allCat=new ArrayList<>();
+                int countCat=0;
                 for(Categoria x:g.getRamo().keySet()){
-                    allCat.add(x);
+
+                    Element categoria=document.createElement("categotia");
+                    Attr numberCategoria=document.createAttribute("id");
+                    numberCategoria.setValue(""+countCat);
+                    gerarchia.appendChild(categoria);
+                    Element nomeCategoria=document.createElement("nomeCategoria");
+                    nomeCategoria.appendChild(document.createTextNode(x.getNome()));
+                    Element descrizione =document.createElement("descrizione");
+                    descrizione.appendChild(document.createElement(x.getDescrizione()));
+                    int counCampo=0;
+                    for(CampoNativo c:x.getCampiNativi()){
+                        Element nomeCampo=document.createElement("nomeCampo");
+                        Attr numberCampo=document.createAttribute("id");
+
+                    }
+                    countCat++;
+
                 }
 
 
 
 
 
-                count++;
+
+
+                countGer++;
 
             }
 
