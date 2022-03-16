@@ -9,6 +9,14 @@ public class Gerarchia {
     private HashMap <Categoria, Categoria> ramo= new HashMap<Categoria,Categoria>();
     private Categoria radice;
 
+    public HashMap<Categoria, Categoria> getRamo() {
+        return ramo;
+    }
+
+    public Categoria getRadice() {
+        return radice;
+    }
+
     public Gerarchia(HashMap <Categoria, Categoria> _ramo, Categoria _radice){
         this.ramo=_ramo;
         this.radice=_radice;
@@ -69,6 +77,7 @@ public class Gerarchia {
 
     }
 
+
     public int numFigli(Categoria padre){
         int figli=0;
         for(Categoria x:this.ramo.keySet()){
@@ -79,7 +88,7 @@ public class Gerarchia {
         return figli;
 
     }
-
+    //metodo che inserendo il nome del padre te lo restituisce altrimenti null
     public Categoria findPadre(String nomePadre){
         for(Categoria x: this.ramo.keySet()){
             if(x.getNome().equals(nomePadre)){
@@ -117,7 +126,13 @@ public class Gerarchia {
                 figliAlti.add(x);
             }
         }
-        s.append("le sottocategorie di "+this.radice.getNome()+ " sono: ");
+        if(this.numFigli(this.radice)==0){
+            System.out.println("non ha sottocategorei");
+        }
+        else{
+            s.append("le sottocategorie di "+this.radice.getNome()+ " sono: ");
+        }
+
         for(Categoria x: figliAlti){
             s.append(x.getNome()+"   ");
         }
