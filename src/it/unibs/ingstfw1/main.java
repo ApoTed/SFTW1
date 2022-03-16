@@ -46,8 +46,17 @@ public class main {
 		Gerarchia g=new Gerarchia(toto, radice);
 		XmlWriter.domWriter();
 
-		//XmlWriter.reader("test", g);
-		XmlRead.domReader("C:\\Users\\apote\\Desktop\\Dom\\testX.xml");
+		XmlWriter.reader("test", g);
+		//XmlRead.domReader("C:\\Users\\apote\\Desktop\\Dom\\testX.xml");
+
+
+		ArrayList<Gerarchia> listaG=new ArrayList<>();
+		listaG.add(g);
+		Sistema sistema=new Sistema(listaG);
+		String titolo="Benvenuto nel sistema di gestione baratti";
+		String[] voci=new String[]{};
+		Menu m=new Menu(titolo,voci);
+		m.MenuConfiguratore(sistema);
 	}
 
 }
