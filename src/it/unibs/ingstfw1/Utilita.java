@@ -37,7 +37,7 @@ public class Utilita {
 				String passwordTry=Utilita.leggiStringaNonVuota("inserisci la tua password: ");
 				temp=new Utente(nameTry, passwordTry);
 			}
-			for (Utente toCompare : data.getListaUtenti()) {
+			for (Utente toCompare : data.getListaConfiguratori()) {
 				if( Utente.sameUtente(toCompare, temp)) {
 					
 					successo=true;

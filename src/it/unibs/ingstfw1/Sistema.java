@@ -17,6 +17,7 @@ public class Sistema {
         StringBuffer stb=new StringBuffer();
         for(Gerarchia g : listaGerarchie){
             stb.append(g.vediRamo());
+            stb.append("\n");
         }
         return stb.toString();
     }

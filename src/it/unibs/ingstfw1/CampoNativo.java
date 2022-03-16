@@ -49,6 +49,7 @@ public class CampoNativo {
 	public String getNomeCampo() {
 		return nomeCampo;
 	}
+
 	public String toString() {
 		StringBuffer str = new StringBuffer();
 		str.append(nomeCampo + ":" + descrizione + "\n");

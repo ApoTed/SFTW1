@@ -179,4 +179,8 @@ public class Gerarchia {
         }
         return esiste;
     }
+
+    public Categoria findCategoria(String nome){
+
+    }
 }
