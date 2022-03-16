@@ -1,8 +1,12 @@
 package it.unibs.ingstfw1;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Utilita {
+	private static final String ERRORE_FORMATO = "Attenzione il dato inserito non e' nel formato corretto";
+	private static final String ERRORE_MINIMO = "Attenzione: e' richiesto un valore maggiore o uguale a ";
+	private static final String ERRORE_MASSIMO = "Attenzione: e' richiesto un valore minore o uguale a ";
 	private static Scanner lettore = creaScanner();
 	
 	
@@ -86,5 +90,37 @@ public class Utilita {
 
         return lettura;
     }
+
+	public static int leggiIntero(String messaggio) {
+		boolean finito = false;
+		int valoreLetto = 0;
+		do {
+			System.out.print(messaggio);
+			try {
+				valoreLetto = lettore.nextInt();
+				finito = true;
+			} catch (InputMismatchException e) {
+				System.out.println(ERRORE_FORMATO);
+				String daButtare = lettore.next();
+			}
+		} while (!finito);
+		return valoreLetto;
+	}
+
+	public static int leggiIntero(String messaggio, int minimo, int massimo) {
+		boolean finito = false;
+		int valoreLetto = 0;
+		do {
+			valoreLetto = leggiIntero(messaggio);
+			if (valoreLetto >= minimo && valoreLetto <= massimo)
+				finito = true;
+			else if (valoreLetto < minimo)
+				System.out.println(ERRORE_MINIMO + minimo);
+			else
+				System.out.println(ERRORE_MASSIMO + massimo);
+		} while (!finito);
+
+		return valoreLetto;
+	}
 
 }
