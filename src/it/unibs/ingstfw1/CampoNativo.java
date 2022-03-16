@@ -52,7 +52,7 @@ public class CampoNativo {
 
 	public String toString() {
 		StringBuffer str = new StringBuffer();
-		str.append(nomeCampo + ":" + descrizione + "\n");
+		str.append(nomeCampo + "\n");
 		return str.toString();
 	}
 	//public ArrayList<String> nomiCampi(CampoNativo c)//metodo per ottenre solo la lista di nomi dei campi

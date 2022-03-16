@@ -8,6 +8,8 @@ public class Menu {
     final private static String VOCE_USCITA = "0\tEsci";
     final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata : ";
     final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie"};
+    public static final int ZERO = 0;
+    public static final int UNO = 1;
 
     private String titolo;
     private String[] voci;
@@ -48,7 +50,10 @@ public class Menu {
                     break;
                 case 2 :
                     System.out.println(sistema.toStringSistema());
-                    break;
+                    int scelta=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
+                    if(scelta==UNO){
+                        System.out.println(Utilita.leggiCategoria(sistema).toStringCategoria());
+                    }
                 default:
                     break;
             }

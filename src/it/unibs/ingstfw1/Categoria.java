@@ -57,7 +57,7 @@ public class Categoria {
 		if (!campiNativi.isEmpty()) {
 			str.append("Campi Nativi : \n");
 			for (CampoNativo cn : campiNativi) {
-				str.append(cn.toString());
+				str.append("\t"+cn.toString());
 			}
 
 		}

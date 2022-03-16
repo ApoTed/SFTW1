@@ -7,6 +7,7 @@ public class Utilita {
 	private static final String ERRORE_FORMATO = "Attenzione il dato inserito non e' nel formato corretto";
 	private static final String ERRORE_MINIMO = "Attenzione: e' richiesto un valore maggiore o uguale a ";
 	private static final String ERRORE_MASSIMO = "Attenzione: e' richiesto un valore minore o uguale a ";
+	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
 	private static Scanner lettore = creaScanner();
 	
 	
@@ -122,5 +123,18 @@ public class Utilita {
 
 		return valoreLetto;
 	}
+
+	public static Categoria leggiCategoria(Sistema sistema){
+		Categoria trovata=null;
+		do {
+			String nome = leggiStringaNonVuota("Inserisci il nome della categoria da visualizzare:");
+			trovata = sistema.findCategoria(nome);
+			if (trovata == null) {
+				System.out.println(CATEGORIA_NON_PRESENTE);
+			}
+		}while(trovata==null);
+
+			return trovata;
+		}
 
 }

@@ -25,4 +25,15 @@ public class Sistema {
     public ArrayList<Gerarchia> getListaGerarchie() {
         return listaGerarchie;
     }
+
+    public Categoria findCategoria(String nome){
+        for(Gerarchia g: this.getListaGerarchie()){
+            for(Categoria c: g.getRamo().keySet()){
+                if (c.getNome().equalsIgnoreCase(nome)){
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
 }
