@@ -24,7 +24,7 @@ public class main {
 		//System.out.println(testGer.vediRamo());
 		//Categoria testCat=Categoria.creaCategoria(campiIniziali);
 		//System.out.println(testCat.toStringCategoria());
-		Categoria radice=new Categoria("libro", "opera cartacea",campiIniziali);
+		Categoria radice=new Categoria("libro", "operacartacea",campiIniziali);
 		Categoria romanzo=new Categoria("romanzo", "opera cartacea storia finta",campiIniziali);
 		Categoria giallo=new Categoria("giallo", "opera cartacea detective",campiIniziali);
 		Categoria fantoccio=new Categoria("inesistente","",campiIniziali);
@@ -56,7 +56,8 @@ public class main {
 		String titolo="Benvenuto nel sistema di gestione baratti";
 		String[] voci=new String[]{};
 		Menu m=new Menu(titolo,voci);
-		m.MenuConfiguratore(sistema);
+		//m.MenuConfiguratore(sistema);
+		XmlWriter.salvaSistema(sistema);
 	}
 
 }

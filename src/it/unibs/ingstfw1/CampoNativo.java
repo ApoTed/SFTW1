@@ -57,4 +57,12 @@ public class CampoNativo {
 	}
 	//public ArrayList<String> nomiCampi(CampoNativo c)//metodo per ottenre solo la lista di nomi dei campi
 
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public boolean isObbligatoria() {
+		return obbligatoria;
+	}
+
 }

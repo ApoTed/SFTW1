@@ -92,62 +92,92 @@ public class XmlWriter {
         }
     }
 
-    public void salvaSistema(Sistema s){
+    public static void salvaSistema(Sistema s){
         try{
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
             Document document = documentBuilder.newDocument();
-
-            Element sistema= document.createElement("insieme gerarchie");
+            //sistema
+            Element sistema= document.createElement("insiemeGerarchie");
             document.appendChild(sistema);
             int countGer=0;
             for(Gerarchia g: s.getListaGerarchie()){
-
+                //gerarchia
                 Element gerarchia =document.createElement("gerarchia");
                 Attr numberGerarchia= document.createAttribute("id");
                 numberGerarchia.setValue(""+countGer);
                 sistema.appendChild(gerarchia);
+
                 ArrayList <Categoria> allCat=new ArrayList<>();
                 int countCat=0;
                 for(Categoria x:g.getRamo().keySet()){
-
+                    //categoria
                     Element categoria=document.createElement("categotia");
                     Attr numberCategoria=document.createAttribute("id");
                     numberCategoria.setValue(""+countCat);
                     gerarchia.appendChild(categoria);
+                    //nome categoria
                     Element nomeCategoria=document.createElement("nomeCategoria");
+                    categoria.appendChild(nomeCategoria);
                     nomeCategoria.appendChild(document.createTextNode(x.getNome()));
+                    //descrizione categoria
                     Element descrizione =document.createElement("descrizione");
-                    descrizione.appendChild(document.createElement(x.getDescrizione()));
-                    int counCampo=0;
+                    categoria.appendChild(descrizione);
+                    descrizione.appendChild(document.createTextNode(x.getDescrizione()));
+                    int countCampo=0;
+                    //campi nativi
+                    Element campiNativi=document.createElement("campiNativi");
+                    categoria.appendChild(campiNativi);
                     for(CampoNativo c:x.getCampiNativi()){
-                        Element nomeCampo=document.createElement("nomeCampo");
+                        //campoNativo
+                        Element campoNativo=document.createElement("campoNativo");
                         Attr numberCampo=document.createAttribute("id");
+                        numberCategoria.setValue(""+countCampo);
+                        campiNativi.appendChild(campoNativo);
+
+                        //nome campo nativo
+                        Element nomeCampo=document.createElement("nomeCampo");
+                        campoNativo.appendChild(nomeCampo);
+                        nomeCampo.appendChild(document.createTextNode(c.getNomeCampo()));
+
+                        //descrione campo nativo
+                        Element descrizioneCampo=document.createElement("descrizioneCampo");
+                        campoNativo.appendChild(descrizioneCampo);
+                        descrizioneCampo.appendChild(document.createTextNode(c.getDescrizione()));
+
+                        //obbligo descrzione campo
+                        Element obbligoCampo=document.createElement("obbligoCampo");
+                        campoNativo.appendChild(obbligoCampo);
+                        if(c.isObbligatoria()){
+                            obbligoCampo.appendChild(document.createTextNode("true"));
+                        }
+                        else {
+                            obbligoCampo.appendChild(document.createTextNode("false"));
+                        }
+                        countCampo++;
 
                     }
+                    //padre categoria
+                    Element padre=document.createElement("categoriaPadre");
+                    categoria.appendChild(padre);
+                    padre.appendChild(document.createTextNode(g.getRamo().get(x).getNome()));
                     countCat++;
 
                 }
 
-
-
-
-
-
-
                 countGer++;
 
             }
-
-
-
-
-
-
+            Transformer transformer2 = TransformerFactory.newInstance().newTransformer();
+            Result output = new StreamResult(new File("testSalva.xml"));
+            Source input = new DOMSource(document);
+            transformer2.transform(input, output);
 
         }catch (ParserConfigurationException e) {
             e.printStackTrace();
-        } ;
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
 
     }
 }
