@@ -2,6 +2,10 @@ package it.unibs.ingstfw1;
 
 import java.util.ArrayList;
 
+/**
+ * Classe per la gestione dei menu
+ *  @author Jacopo Tedeschi,Enrico Zambelli
+ */
 public class Menu {
 
     final private static String CORNICE = "--------------------------------";
@@ -15,17 +19,28 @@ public class Menu {
     private String[] voci;
 
 
-
+    /**
+     * Costruttore della classe menu
+     * @param titolo titolo del menu
+     * @param voci le voci del menu
+     */
     public Menu(String titolo, String[] voci) {
         this.titolo = titolo;
         this.voci = voci;
     }
 
+    /**
+     * Metodo per la scelta di un'opzione del menu
+     * @return il numero della scelta
+     */
     public int scegli() {
         stampaMenu();
         return Utilita.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.length);
     }
 
+    /**
+     * Metodo per la stampa a video di un menu
+     */
     public void stampaMenu() {
         System.out.println(CORNICE);
         System.out.println(titolo);
@@ -38,6 +53,10 @@ public class Menu {
         System.out.println();
     }
 
+    /**
+     * Metodo per la gestione del menu del configuratore
+     * @param sistema il sistema su cui opera il configuratore
+     */
     public void MenuConfiguratore(Sistema sistema){
         int risposta;
         this.setVoci(VOCI_Configuratore);
@@ -48,12 +67,12 @@ public class Menu {
                     String nomeRadice;
                     boolean nomeRadiceNuovo=false;
                     do{
-                        nomeRadice=Utilita.leggiStringaNonVuota("inserisci il nome della radice della gerarchia");
+                        nomeRadice=Utilita.leggiStringaNonVuota("Inserisci il nome della radice della gerarchia:");
                         if(sistema.checkNomeNuovoRadice(nomeRadice)){
                             nomeRadiceNuovo=true;
                         }
                         else
-                            System.out.println("questo nome è già preso");
+                            System.out.println("Questo nome è già presente");
                     }while(!nomeRadiceNuovo);
                     Gerarchia creata=Gerarchia.creaRamo(nomeRadice);
                     sistema.addGerarchia(creata);
@@ -71,10 +90,18 @@ public class Menu {
 
     }
 
+    /**
+     * Metodo get per le voci del menu
+     * @return le voci del menu
+     */
     public String[] getVoci() {
         return voci;
     }
 
+    /**
+     * Metodo set per le voci del menu
+     * @param voci le voci da settare
+     */
     public void setVoci(String[] voci) {
         this.voci = voci;
     }

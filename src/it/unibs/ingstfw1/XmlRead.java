@@ -21,6 +21,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * Classe per la gestione della lettura di un file XML
+ * @author Jacopo Tedeschi,Enrico Zambelli
+ */
 public class XmlRead {
 
 

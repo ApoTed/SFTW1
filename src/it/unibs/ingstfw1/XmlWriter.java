@@ -16,6 +16,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+/**
+ * Classe per la gestione della scrittura di un file XML
+ */
 public class XmlWriter {
 
     public static void domWriter(){
@@ -100,42 +103,23 @@ public class XmlWriter {
 
             Element sistema= document.createElement("insieme gerarchie");
             document.appendChild(sistema);
-            int countGer=0;
-            for(Gerarchia g: s.getListaGerarchie()){
 
+            for(Gerarchia g: s.getListaGerarchie()){
+                int count=0;
                 Element gerarchia =document.createElement("gerarchia");
                 Attr numberGerarchia= document.createAttribute("id");
-                numberGerarchia.setValue(""+countGer);
+                numberGerarchia.setValue(""+count);
                 sistema.appendChild(gerarchia);
                 ArrayList <Categoria> allCat=new ArrayList<>();
-                int countCat=0;
                 for(Categoria x:g.getRamo().keySet()){
-
-                    Element categoria=document.createElement("categotia");
-                    Attr numberCategoria=document.createAttribute("id");
-                    numberCategoria.setValue(""+countCat);
-                    gerarchia.appendChild(categoria);
-                    Element nomeCategoria=document.createElement("nomeCategoria");
-                    nomeCategoria.appendChild(document.createTextNode(x.getNome()));
-                    Element descrizione =document.createElement("descrizione");
-                    descrizione.appendChild(document.createElement(x.getDescrizione()));
-                    int counCampo=0;
-                    for(CampoNativo c:x.getCampiNativi()){
-                        Element nomeCampo=document.createElement("nomeCampo");
-                        Attr numberCampo=document.createAttribute("id");
-
-                    }
-                    countCat++;
-
+                    allCat.add(x);
                 }
 
 
 
 
 
-
-
-                countGer++;
+                count++;
 
             }
 
