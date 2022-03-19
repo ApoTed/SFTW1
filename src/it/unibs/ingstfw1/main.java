@@ -4,6 +4,7 @@ import jdk.management.jfr.FlightRecorderMXBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 public class main {
 
 	public static void main(String[] args) {
@@ -23,7 +24,6 @@ public class main {
 		//System.out.println(testGer.vediRamo());
 		//Categoria testCat=Categoria.creaCategoria(campiIniziali);
 		//System.out.println(testCat.toStringCategoria());
-
 		Categoria radice=new Categoria("libro", "opera cartacea",campiIniziali);
 		Categoria romanzo=new Categoria("romanzo", "opera cartacea storia finta",campiIniziali);
 		Categoria giallo=new Categoria("giallo", "opera cartacea detective",campiIniziali);
