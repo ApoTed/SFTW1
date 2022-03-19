@@ -57,7 +57,6 @@ public class main {
 		String[] voci=new String[]{};
 		Menu m=new Menu(titolo,voci);
 		m.MenuConfiguratore(sistema);
-		//prova
 	}
 
 }
