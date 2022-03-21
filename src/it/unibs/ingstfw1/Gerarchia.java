@@ -27,8 +27,8 @@ public class Gerarchia {
     public static Gerarchia creaRamo(String nomeRadice){
         HashMap<Categoria, Categoria> links=new HashMap<Categoria,Categoria>();
         System.out.println("inserisci i dati della gerarchia radice");
-        CampoNativo primo=new CampoNativo("stato di conservazione","",true);
-        CampoNativo primos=new CampoNativo("descrizione libera","",false);
+        CampoNativo primo=new CampoNativo("stato di conservazione",true);
+        CampoNativo primos=new CampoNativo("descrizione libera",false);
         ArrayList <CampoNativo> campiIniziali=new ArrayList<>();
         campiIniziali.add(primo);
         campiIniziali.add(primos);
@@ -133,6 +133,11 @@ public class Gerarchia {
 
     public void setRadice(Categoria radice) {
         this.radice = radice;
+    }
+
+    public Gerarchia addCategoria(Categoria toAdd, Categoria padre){
+        this.ramo.put(toAdd, padre);
+        return this;
     }
 
     public String vediRamo(){

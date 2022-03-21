@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 public class CampoNativo {
 	private String nomeCampo;
-	private String descrizione;
 	private boolean obbligatoria;
 	
-	public CampoNativo(String _nomeCampo, String _descrizione, boolean _obbligatoria) {
+	public CampoNativo(String _nomeCampo,  boolean _obbligatoria) {
 		
 		this.nomeCampo=_nomeCampo;
-		this.descrizione=_descrizione;
 		this.obbligatoria=_obbligatoria;
 	}
 
@@ -34,18 +32,10 @@ public class CampoNativo {
 		if(choice.equals("0")){
 			obbligo=false;
 		}
-		CampoNativo c=new CampoNativo(nome, "", obbligo);
+		CampoNativo c=new CampoNativo(nome, obbligo);
 		return c;
 	}
-	public boolean checkDescrizione() {
-		boolean corretto=true;
-		if(obbligatoria) {
-			if( descrizione.isEmpty()) {
-				corretto=false;
-			}
-		}
-		return corretto;
-	}
+
 	public String getNomeCampo() {
 		return nomeCampo;
 	}
@@ -56,10 +46,6 @@ public class CampoNativo {
 		return str.toString();
 	}
 	//public ArrayList<String> nomiCampi(CampoNativo c)//metodo per ottenre solo la lista di nomi dei campi
-
-	public String getDescrizione() {
-		return descrizione;
-	}
 
 	public boolean isObbligatoria() {
 		return obbligatoria;
