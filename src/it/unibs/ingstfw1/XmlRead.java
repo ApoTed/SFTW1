@@ -23,6 +23,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Classe per la gestione della lettura di un file XML
+ * @author Jacopo Tedeschi,Enrico Zambelli
+ */
 public class XmlRead {
 
 
