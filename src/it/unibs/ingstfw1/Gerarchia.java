@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * classe per la costruzione e la gestione della gerarchia
+ * @author Enrico Zambelli, Jacopo Tedeschi
+ */
 public class Gerarchia {
 
     private HashMap <Categoria, Categoria> ramo= new HashMap<Categoria,Categoria>();
@@ -24,6 +28,12 @@ public class Gerarchia {
     public Gerarchia(){
 
     }
+
+    /**
+     * metodo per la creazione della gerarchia da parte del configuratore
+     * @param nomeRadice nome dellla radice che viene chiesto prima della creazione per verificarne la validità le altre radici
+     * @return finale la gerarchia creata
+     */
     public static Gerarchia creaRamo(String nomeRadice){
         HashMap<Categoria, Categoria> links=new HashMap<Categoria,Categoria>();
         System.out.println("inserisci i dati della gerarchia radice");
@@ -89,6 +99,11 @@ public class Gerarchia {
 
     }
 
+    /**
+     * metodo che controlla se un nome è già stato preso all'interno della gerarchia
+     * @param s nome da controllare
+     * @return nuovo boolean che è true se non è già presente false altrimenti
+     */
     public boolean checkNomeNuovo(String s){
         boolean nuovo=true;
         for(Categoria x: this.ramo.keySet()){
@@ -100,7 +115,11 @@ public class Gerarchia {
         return nuovo;
     }
 
-
+    /**
+     * metodo che controlla quante sottocategorie ha una categoria
+     * @param padre nome categoria da controllare
+     * @return figli int che indica il numero di sottocategorie presenti
+     */
     public int numFigli(Categoria padre){
         int figli=0;
         for(Categoria x:this.ramo.keySet()){
@@ -111,7 +130,13 @@ public class Gerarchia {
         return figli;
 
     }
-    //metodo che inserendo il nome del padre te lo restituisce altrimenti null
+
+
+    /**
+     * metodo che restituisce la categoria padre inserendone il nome
+     * @param nomePadre nome del padre
+     * @return x la categoria padre
+     */
     public Categoria findPadre(String nomePadre){
         for(Categoria x: this.ramo.keySet()){
             if(x.getNome().equals(nomePadre)){
@@ -122,6 +147,10 @@ public class Gerarchia {
         return null;
     }
 
+    /**
+     * metodo che restituisce una stringa con tutte le possibili categorie che possono avere delle sottocategorie
+     * @return s.toString(); stringa contenente i nomi delle categorie
+     */
     public String vediPadri(){
         StringBuffer s=new StringBuffer();
         for(Categoria x: this.ramo.keySet()){
@@ -131,15 +160,29 @@ public class Gerarchia {
         return s.toString();
     }
 
+    /**
+     * metodo per impostare il valore della radice
+     * @param radice categoria che si vuole impostare come radice
+     */
     public void setRadice(Categoria radice) {
         this.radice = radice;
     }
 
+    /**
+     * metodo che aggiunge una categoria con la relativa categoria padre
+     * @param toAdd categoria da aggiungere
+     * @param padre relativa categoria padre
+     * @return la gerarchia modificate
+     */
     public Gerarchia addCategoria(Categoria toAdd, Categoria padre){
         this.ramo.put(toAdd, padre);
         return this;
     }
 
+    /**
+     * metodo per la visualizzazione della gerarchia
+     * @return una stringa contenete le informazioni relativealla visualizzazione della gerarchia
+     */
     public String vediRamo(){
         ArrayList<Categoria> nonVisti=new ArrayList<Categoria>();
         StringBuffer s=new StringBuffer();
@@ -199,6 +242,11 @@ public class Gerarchia {
 
     }
 
+    /**
+     * metodo che controlla che il nome inserito come categoria padre sia valido
+     * @param nome nome della categoria padre di cui si vuole creare 1 o più sottocategorie
+     * @return esiste boolean che è true se valido false altrimenti
+     */
     public boolean checkPadreNome (String nome){
         boolean esiste=false;
         for(Categoria x: this.ramo.keySet()){

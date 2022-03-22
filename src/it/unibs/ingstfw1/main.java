@@ -66,6 +66,7 @@ public class main {
 		XmlWriter.salvaSistema(sistema);
 		Sistema testingRead=XmlRead.readSis("testSalva.xml");
 		System.out.println("genio o pirla?");
+
 	}
 
 }

@@ -2,16 +2,30 @@ package it.unibs.ingstfw1;
 
 import java.util.ArrayList;
 
+/**
+ * Classe per la gestione di un cmapo nativo.
+ * @author Jacopo Tedeschi,Enrico Zambelli
+ */
 public class CampoNativo {
 	private String nomeCampo;
 	private boolean obbligatoria;
-	
+
+	/**
+	 * costruttore di campo nativo
+	 * @param _nomeCampo nome del campo nativo
+	 * @param _obbligatoria boolean che è true se la compilazione del campo è obbligatoria false altrimenti
+	 */
 	public CampoNativo(String _nomeCampo,  boolean _obbligatoria) {
 		
 		this.nomeCampo=_nomeCampo;
 		this.obbligatoria=_obbligatoria;
 	}
 
+	/**
+	 * metodo per la creazione del campo da parte del configuratore
+	 * @param nameToCompare ArrayList contenente i nome dei campi nativi già presenti che non possono essere ripetuti
+	 * @return il campo naitvo creato
+	 */
 	public static CampoNativo creaCampo(ArrayList <String> nameToCompare){
 		String nome=Utilita.leggiStringaNonVuota("inserisci nome campo");
 		boolean diverso=false;
@@ -36,10 +50,18 @@ public class CampoNativo {
 		return c;
 	}
 
+	/**
+	 * metodo per ottenre il nome del campo
+	 * @return nome del campo
+	 */
 	public String getNomeCampo() {
 		return nomeCampo;
 	}
 
+	/**
+	 * metodo per ottenre una stringa per la visualizzazione del campo
+	 * @return stringa contenete le informazione del campo
+	 */
 	public String toString() {
 		StringBuffer str = new StringBuffer();
 		str.append(nomeCampo + "\n");
@@ -47,6 +69,10 @@ public class CampoNativo {
 	}
 	//public ArrayList<String> nomiCampi(CampoNativo c)//metodo per ottenre solo la lista di nomi dei campi
 
+	/**
+	 * metodo per ottenere un boolean che p true se è obbligatorio false altrimenti
+	 * @return boolean riguardo l'obbligo del campo
+	 */
 	public boolean isObbligatoria() {
 		return obbligatoria;
 	}

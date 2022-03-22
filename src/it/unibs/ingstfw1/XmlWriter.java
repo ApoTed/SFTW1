@@ -15,9 +15,15 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-
+/**
+ * classe per la gestione del salvataggio su file xml del sistema
+ * @author  Enrico Zambello, Jacopo Tedeschi
+ */
 public class XmlWriter {
-
+    /**
+     * metodo per salvare i dati su file xml all'inteno del package
+     * @param s sistema di cui si salavano i dati
+     */
     public static void salvaSistema(Sistema s){
         try{
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -94,12 +100,11 @@ public class XmlWriter {
             Source input = new DOMSource(document);
             transformer2.transform(input, output);
 
-            // create the xml file
-            //transform the DOM Object to an XML File
+            //trasforma il DOM Object in un file xml da salvare in un percorso valido
             //TransformerFactory transformerFactory = TransformerFactory.newInstance();
             //Transformer transformer = transformerFactory.newTransformer();
             //DOMSource domSource = new DOMSource(document);
-            //StreamResult streamResult = new StreamResult(new File(xmlFilePath)); xmleFilePath percoso valido dove salvare nel pc
+            //StreamResult streamResult = new StreamResult(new File(xmlFilePath)); //xmleFilePath percoso valido dove salvare nel pc
 
         }catch (ParserConfigurationException e) {
             e.printStackTrace();
