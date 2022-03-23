@@ -15,7 +15,7 @@ public class main {
 		Utente test=new Utente("primo","12");
 		DatiUtenti x=new DatiUtenti(l, c);
 		x.addUtente("primo", "12", true);
-
+		//utente che ha eseguito l'accesso
 		Utente acceduto=x.menuAccesso();
 		//Utilita.menuAccesso(x);
 		CampoNativo primo=new CampoNativo("stato di conservazione",true);

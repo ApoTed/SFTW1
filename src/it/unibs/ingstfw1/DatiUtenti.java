@@ -26,7 +26,7 @@ public class DatiUtenti {
 
 	/**
 	 * metodo per la gestione dell'accesso
-	 * @return l'utente che ha eseguito correttamente l'accesso null altrimenti
+	 * @return l'utente che ha eseguito correttamente l'accesso null se l'accesso è fallisto
 	 */
 	public Utente menuAccesso() {
 		boolean successo=false;

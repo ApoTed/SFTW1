@@ -12,8 +12,6 @@ public class Utilita {
 	private static final String ERRORE_MINIMO = "Attenzione: e' richiesto un valore maggiore o uguale a ";
 	private static final String ERRORE_MASSIMO = "Attenzione: e' richiesto un valore minore o uguale a ";
 	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
-	public static final String INSERISCI_NOME = "Inserisci il tuo nome:";
-	public static final String INSERISCI_PASSWORD = "Inserisci la tua password:";
 	public static final String ERRORE_STRINGA_VUOTA = "La stringa inserita non può essere vuota";
 	private static Scanner lettore = creaScanner();
 
