@@ -41,7 +41,7 @@ public class Sistema {
         for(Gerarchia g : listaGerarchie){
             stb.append("Gerarchia " + i +":\n");
             stb.append(g.vediRamo()+"\n");
-            stb.append("\n ");
+            stb.append("\n");
             i++;
         }
         return stb.toString();
@@ -60,12 +60,10 @@ public class Sistema {
      * @param nome il nome della categoria da cercare
      * @return la categoria cercata se presente, null altrimenti
      */
-    public Categoria findCategoria(String nome){
-        for(Gerarchia g: this.getListaGerarchie()){
-            for(Categoria c: g.getRamo().keySet()){
-                if (c.getNome().equalsIgnoreCase(nome)){
-                    return c;
-                }
+    public Categoria findCategoria(String nome, int numGer){
+        for(Categoria x: this.listaGerarchie.get(numGer-1).getRamo().keySet()){
+            if(x.getNome().equalsIgnoreCase(nome)){
+                return x;
             }
         }
         return null;
@@ -79,7 +77,7 @@ public class Sistema {
     public boolean checkNomeNuovoRadice(String s){
         boolean valido=true;
         for(Gerarchia x:this.listaGerarchie){
-            if(x.getRadice().getNome().equals(s)){
+            if(x.getRadice().getNome().equalsIgnoreCase(s)){
                 valido=false;
             }
         }

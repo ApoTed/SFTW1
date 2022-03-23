@@ -108,15 +108,13 @@ public class Utilita {
 	 */
 	public static Categoria leggiCategoria(Sistema sistema){
 		Categoria trovata=null;
-		do {
-			String nome = leggiStringaNonVuota("Inserisci il nome della categoria da visualizzare:");
-			trovata = sistema.findCategoria(nome);
-			if (trovata == null) {
-				System.out.println(CATEGORIA_NON_PRESENTE);
-			}
-		}while(trovata==null);
-
-			return trovata;
+		int numCat=Utilita.leggiIntero("Inserisci il numero della gerarchia alla quale appartiene la categoria che vuoi vedere nel dettaglio: ", 1, sistema.getListaGerarchie().size());
+		String nome = leggiStringaNonVuota("Inserisci il nome della categoria da visualizzare: ");
+		trovata = sistema.findCategoria(nome, numCat);
+		if (trovata == null) {
+			System.out.println(CATEGORIA_NON_PRESENTE);
+		}
+		return trovata;
 		}
 
 }

@@ -75,6 +75,8 @@ public class DatiUtenti {
 		}
 		else {
 			System.out.println("Accesso eseguito con successo");
+			temp=this.getUtenteDaCredenziali(temp.getUsername(), temp.getPassword());
+
 		}
 		return temp;
 
@@ -156,6 +158,14 @@ public class DatiUtenti {
 	public void setListaUtenti(ArrayList <Utente> listaUtenti) {
 		this.listaUtenti = listaUtenti;
 	}
-	
+
+	public Utente getUtenteDaCredenziali(String name, String password){
+		for(Utente x: this.listaUtenti){
+			if(x.getUsername().equals(name) && x.getPassword().equals(password)){
+				return x;
+			}
+		}
+		return null;
+	}
 
 }

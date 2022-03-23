@@ -90,10 +90,11 @@ public class Gerarchia {
 
             int figli=finale.numFigli(padre);
             if(figli==0){
-                System.out.println("Si devono inserire 2 sottocategorie perchè il padre non ne ha nessuna per ora");
+                System.out.println("Si devono inserire almeno 2 sottocategorie perchè il padre non ne ha nessuna per ora");
                 finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
                 //System.out.println("inserire la seconda sottocategoria di: "+nomePadre);
-                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
+                String nomeCat2=Utilita.leggiStringaNonVuota("Inserire il nome della seconda sottocategoria di "+ nomePadre+": ");
+                finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCat2),finale.findPadre(nomePadre));
             }
             else{
                 finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
@@ -148,7 +149,7 @@ public class Gerarchia {
      */
     public Categoria findPadre(String nomePadre){
         for(Categoria x: this.ramo.keySet()){
-            if(x.getNome().equals(nomePadre)){
+            if(x.getNome().equalsIgnoreCase(nomePadre)){
                 return x;
             }
 
