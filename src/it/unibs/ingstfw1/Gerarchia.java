@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * classe per la costruzione e la gestione della gerarchia
+ * Classe per la costruzione e la gestione della gerarchia
  * @author Enrico Zambelli, Jacopo Tedeschi
  */
 public class Gerarchia {
@@ -21,24 +21,33 @@ public class Gerarchia {
         return radice;
     }
 
+    /**
+     * Costruttore della classe gerarchia
+     * @param _ramo hashMap formata da una categoria e dalla sua categoria padre
+     * @param _radice radice della gerarchia
+     */
     public Gerarchia(HashMap <Categoria, Categoria> _ramo, Categoria _radice){
         this.ramo=_ramo;
         this.radice=_radice;
     }
+
+    /**
+     * Costruttore della classe gerarchia
+     */
     public Gerarchia(){
 
     }
 
     /**
-     * metodo per la creazione della gerarchia da parte del configuratore
-     * @param nomeRadice nome dellla radice che viene chiesto prima della creazione per verificarne la validità le altre radici
+     * Metodo per la creazione della gerarchia da parte del configuratore
+     * @param nomeRadice nome della radice che viene chiesto prima della creazione per verificarne la validità le altre radici
      * @return finale la gerarchia creata
      */
     public static Gerarchia creaRamo(String nomeRadice){
         HashMap<Categoria, Categoria> links=new HashMap<Categoria,Categoria>();
-        System.out.println("inserisci i dati della gerarchia radice");
-        CampoNativo primo=new CampoNativo("stato di conservazione",true);
-        CampoNativo primos=new CampoNativo("descrizione libera",false);
+        System.out.println("Inserisci i dati della gerarchia radice");
+        CampoNativo primo=new CampoNativo("Stato di conservazione",true);
+        CampoNativo primos=new CampoNativo("Descrizione libera",false);
         ArrayList <CampoNativo> campiIniziali=new ArrayList<>();
         campiIniziali.add(primo);
         campiIniziali.add(primos);
@@ -49,7 +58,7 @@ public class Gerarchia {
         finale.setRadice(r);
 
 
-        String choiceContinue=Utilita.leggiStringaNonVuota("inserisci 1 se vuoi inserire una sottocategoria altrimenti 0");
+        String choiceContinue=Utilita.leggiStringaNonVuota("Inserisci 1 se vuoi inserire una sottocategoria, 0 altrimenti:");
         while(choiceContinue.equals("1")){
             System.out.println(finale.vediPadri());
 
@@ -57,33 +66,33 @@ public class Gerarchia {
             String nomePadre;
             Categoria padre = new Categoria("","",null);
             do{
-                nomePadre=Utilita.leggiStringaNonVuota("inserisci il nome del padre");
+                nomePadre=Utilita.leggiStringaNonVuota("Inserisci il nome del padre:");
                 if(finale.checkPadreNome(nomePadre)){
                     nomePadreValido=true;
                     padre=finale.findPadre(nomePadre);
                 }
                 else {
-                    System.out.println("non esiste tale padre, scegli uno dei possibili padri");
+                    System.out.println("Tale padre non esiste, scegli uno dei possibili padri:");
                     System.out.println(finale.vediPadri());
                 }
             }while(nomePadreValido==false);
             boolean nomeNuovo=false;
             String nomeCatgoria;
             do{
-                nomeCatgoria=Utilita.leggiStringaNonVuota("inserisci il nome della categoria");
+                nomeCatgoria=Utilita.leggiStringaNonVuota("Inserisci il nome della categoria:");
                 if(finale.checkNomeNuovo(nomeCatgoria)){
                     nomeNuovo=true;
                 }
                 else{
-                    System.out.println("nome non valido");
+                    System.out.println("Nome non valido");
                 }
             }while(!nomeNuovo);
 
             int figli=finale.numFigli(padre);
             if(figli==0){
-                System.out.println("si devono inderire 2 sottocategorie perchè il padre non ne ha nessuna per ora");
+                System.out.println("Si devono inserire 2 sottocategorie perchè il padre non ne ha nessuna per ora");
                 finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
-                System.out.println("inserire la seconda sottocategoria di: "+nomePadre);
+                //System.out.println("inserire la seconda sottocategoria di: "+nomePadre);
                 finale.ramo.put(Categoria.creaCategoria(finale.findPadre(nomePadre).getCampiNativi(),nomeCatgoria),finale.findPadre(nomePadre));
             }
             else{
@@ -92,7 +101,7 @@ public class Gerarchia {
 
 
 
-            choiceContinue=Utilita.leggiStringaNonVuota("inserisci 1 se vuoi inserire un'altra sottocategoria se hai finito premi 0");
+            choiceContinue=Utilita.leggiStringaNonVuota("Inserisci 1 se vuoi inserire un'altra sottocategoria, 0 altrimenti:");
         }
 
         return finale;
@@ -100,7 +109,7 @@ public class Gerarchia {
     }
 
     /**
-     * metodo che controlla se un nome è già stato preso all'interno della gerarchia
+     * Metodo che controlla se un nome è già stato preso all'interno della gerarchia
      * @param s nome da controllare
      * @return nuovo boolean che è true se non è già presente false altrimenti
      */
@@ -116,7 +125,7 @@ public class Gerarchia {
     }
 
     /**
-     * metodo che controlla quante sottocategorie ha una categoria
+     * Metodo che controlla quante sottocategorie ha una categoria
      * @param padre nome categoria da controllare
      * @return figli int che indica il numero di sottocategorie presenti
      */
@@ -133,7 +142,7 @@ public class Gerarchia {
 
 
     /**
-     * metodo che restituisce la categoria padre inserendone il nome
+     * Metodo che restituisce la categoria padre inserendone il nome
      * @param nomePadre nome del padre
      * @return x la categoria padre
      */
@@ -148,7 +157,7 @@ public class Gerarchia {
     }
 
     /**
-     * metodo che restituisce una stringa con tutte le possibili categorie che possono avere delle sottocategorie
+     * Metodo che restituisce una stringa con tutte le possibili categorie che possono avere delle sottocategorie
      * @return s.toString(); stringa contenente i nomi delle categorie
      */
     public String vediPadri(){
@@ -161,7 +170,7 @@ public class Gerarchia {
     }
 
     /**
-     * metodo per impostare il valore della radice
+     * Metodo per impostare il valore della radice
      * @param radice categoria che si vuole impostare come radice
      */
     public void setRadice(Categoria radice) {
@@ -169,7 +178,7 @@ public class Gerarchia {
     }
 
     /**
-     * metodo che aggiunge una categoria con la relativa categoria padre
+     * Metodo che aggiunge una categoria con la relativa categoria padre
      * @param toAdd categoria da aggiungere
      * @param padre relativa categoria padre
      * @return la gerarchia modificate
@@ -180,13 +189,13 @@ public class Gerarchia {
     }
 
     /**
-     * metodo per la visualizzazione della gerarchia
-     * @return una stringa contenete le informazioni relativealla visualizzazione della gerarchia
+     * Metodo per la visualizzazione della gerarchia
+     * @return una stringa contenete le informazioni relative alla visualizzazione della gerarchia
      */
     public String vediRamo(){
         ArrayList<Categoria> nonVisti=new ArrayList<Categoria>();
         StringBuffer s=new StringBuffer();
-        s.append("la radice è "+this.radice.getNome()+". ");
+        s.append("La radice è "+this.radice.getNome()+". ");
         for(Categoria x: this.ramo.keySet()){
             nonVisti.add(x);
         }
@@ -198,10 +207,10 @@ public class Gerarchia {
             }
         }
         if(this.numFigli(this.radice)==0){
-            System.out.println("non ha sottocategorei");
+            System.out.println("non ha sottocategorie");
         }
         else{
-            s.append("le sottocategorie di "+this.radice.getNome()+ " sono: ");
+            s.append("Le sottocategorie di "+this.radice.getNome()+ " sono: ");
         }
 
         for(Categoria x: figliAlti){
@@ -220,7 +229,7 @@ public class Gerarchia {
                     }
                 }
                 if(!figlietti.isEmpty()){
-                    s.append("le sottocategorie di "+x.getNome()+" sono: ");
+                    s.append("Le sottocategorie di "+x.getNome()+" sono: ");
                     for(Categoria j:figlietti){
                         s.append(j.getNome()+"    ");
                     }
@@ -243,7 +252,7 @@ public class Gerarchia {
     }
 
     /**
-     * metodo che controlla che il nome inserito come categoria padre sia valido
+     * Metodo che controlla che il nome inserito come categoria padre sia valido
      * @param nome nome della categoria padre di cui si vuole creare 1 o più sottocategorie
      * @return esiste boolean che è true se valido false altrimenti
      */

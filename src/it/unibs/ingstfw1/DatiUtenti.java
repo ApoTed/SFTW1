@@ -22,7 +22,7 @@ public class DatiUtenti {
 	}
 
 	/**
-	 * Mertodo per il controllo delle credenziali di un utente
+	 * Metodo per il controllo delle credenziali di un utente
 	 * @param userName username dell'utente
 	 * @param password password dell'utente
 	 * @return true se le credenziali sono corrette, false altrimenti
@@ -42,7 +42,7 @@ public class DatiUtenti {
 	/**
 	 * Metodo per il controllo delle credenziali predefinite
 	 * @param u utente del quale si vuole verificare l'inseriemnto delle credenziali predefinite
-	 * @return true le credenziali predefinite sono corrette,false altrimenti
+	 * @return true se le credenziali predefinite sono corrette,false altrimenti
 	 */
 	public boolean checkConf(Utente u) {
 		boolean corretto=false;

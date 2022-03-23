@@ -21,7 +21,7 @@ public class Utilita {
 	/**
 	 * Metodo per la gestione del menu di accesso
 	 * @param data la lista degli utenti del sistema
-	 * @return true se l'accesso va a buon fine,false altrimenti
+	 * @return true se l'accesso va a buon fine, false altrimenti
 	 */
 	public static boolean menuAccesso(DatiUtenti data) {
 		boolean successo=false;

@@ -62,10 +62,10 @@ public class main {
 		String titolo="Benvenuto nel sistema di gestione baratti";
 		String[] voci=new String[]{};
 		Menu m=new Menu(titolo,voci);
-		//m.MenuConfiguratore(sistema);
+		m.MenuConfiguratore(sistema);
 		XmlWriter.salvaSistema(sistema);
 		Sistema testingRead=XmlRead.readSis("testSalva.xml");
-		System.out.println("genio o pirla?");
+		//System.out.println("genio o pirla?");
 
 	}
 
