@@ -19,64 +19,6 @@ public class Utilita {
 
 
 	/**
-	 * Metodo per la gestione del menu di accesso
-	 * @param data la lista degli utenti del sistema
-	 * @return true se l'accesso va a buon fine, false altrimenti
-	 */
-	public static boolean menuAccesso(DatiUtenti data) {
-		boolean successo=false;
-		String username=Utilita.leggiStringaNonVuota("Benvenuto "+ INSERISCI_NOME);
-		String password=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
-		Utente temp= new Utente(username, password);
-		if( data.checkConf(temp)) {
-			String newUsername;
-			do {
-				newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
-				if(data.checkName(newUsername)==true)
-					System.out.println("Questo nome utente non è disponibile");
-			}while(data.checkName(newUsername)==true);
-				
-			String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
-			data.addUtente(newUsername, newPassword, true);
-			temp=new Utente(newUsername, newPassword);
-			
-		}
-		for (int i=0;i<3;i++) {
-			//accesso da utente già registrato 3 tentativi
-			int tentativi = 2 - i;
-			if(tentativi<2){
-				String nameTry=Utilita.leggiStringaNonVuota(INSERISCI_NOME);
-				String passwordTry=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
-				temp=new Utente(nameTry, passwordTry);
-			}
-			for (Utente toCompare : data.getListaUtenti()) {
-				if( Utente.sameUtente(toCompare, temp)) {
-					
-					successo=true;
-				}
-
-			}
-			if(successo==false) {
-
-				System.out.println("Le credenziali inserite non sono corrette, hai " + tentativi + " tentativi");
-
-
-			}
-			if(successo==true)
-				break;
-
-		}
-		if(successo==false) {
-			System.out.println("Accesso fallito chiudere il programma");
-		}
-		else {
-			System.out.println("Accesso eseguito con successo");
-		}
-		return successo;
-		
-	}
-
-	/**
 	 * Metodo per la creazione di uno scanner
 	 * @return lo scanner creato
 	 */

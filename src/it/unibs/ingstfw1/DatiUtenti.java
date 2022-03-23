@@ -7,7 +7,10 @@ import java.util.ArrayList;
  * @author Jacopo Tedeschi,Enrico Zambelli
  */
 public class DatiUtenti {
-	
+	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
+	public static final String INSERISCI_NOME = "Inserisci il tuo nome: ";
+	public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
+
 	private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
 	private Utente standardConf;
 
@@ -19,6 +22,62 @@ public class DatiUtenti {
 	public DatiUtenti (ArrayList <Utente> _listaUtenti, Utente _standardConf) {
 		this.listaUtenti =_listaUtenti;
 		this.standardConf=_standardConf;
+	}
+
+	/**
+	 * metodo per la gestione dell'accesso
+	 * @return l'utente che ha eseguito correttamente l'accesso null altrimenti
+	 */
+	public Utente menuAccesso() {
+		boolean successo=false;
+		String username=Utilita.leggiStringaNonVuota("Benvenuto "+ INSERISCI_NOME);
+		String password=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
+		Utente temp= new Utente(username, password);
+		if( this.checkConf(temp)) {
+			String newUsername;
+			do {
+				newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
+				if(this.checkName(newUsername)==true)
+					System.out.println("Questo nome utente non è disponibile");
+			}while(this.checkName(newUsername)==true);
+
+			String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
+			this.addUtente(newUsername, newPassword, true);
+			temp=new Configuratore(newUsername, newPassword);
+
+		}
+		for (int i=0;i<3;i++) {
+			//accesso da utente già registrato 3 tentativi
+			int tentativi = 2 - i;
+			if(tentativi<2){
+				String nameTry=Utilita.leggiStringaNonVuota(INSERISCI_NOME);
+				String passwordTry=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
+				temp=new Utente(nameTry, passwordTry);
+			}
+			for (Utente toCompare : this.getListaUtenti()) {
+				if( Utente.sameUtente(toCompare, temp)) {
+
+					successo=true;
+				}
+
+			}
+			if(successo==false) {
+
+				System.out.println("Le credenziali inserite non sono corrette, hai " + tentativi + " tentativi");
+			}
+			if(successo==true)
+				break;
+
+		}
+		if(successo==false) {
+			System.out.println("Accesso fallito chiudere il programma");
+			temp=null;
+		}
+		else {
+			System.out.println("Accesso eseguito con successo");
+		}
+		return temp;
+
 	}
 
 	/**
