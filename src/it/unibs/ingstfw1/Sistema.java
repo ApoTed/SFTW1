@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Classe per la gestione del sistema
- * @author Jacopo Tedeschi,Enrico Zambelli
+ * @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class Sistema {
 
@@ -34,7 +34,7 @@ public class Sistema {
     public String toStringSistema(){
         StringBuffer stb=new StringBuffer();
         for(Gerarchia g : listaGerarchie){
-            stb.append(g.vediRamo());
+            stb.append(g.vediRamo()+"\n");
             stb.append("\n");
         }
         return stb.toString();
@@ -51,7 +51,7 @@ public class Sistema {
     /**
      * Metodo per la ricerca di una categoria nel sistema in base al nome passato in ingresso
      * @param nome il nome della categoria da cercare
-     * @return la categroia cercata se presente, null altrimenti
+     * @return la categoria cercata se presente, null altrimenti
      */
     public Categoria findCategoria(String nome){
         for(Gerarchia g: this.getListaGerarchie()){

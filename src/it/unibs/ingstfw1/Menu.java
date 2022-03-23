@@ -79,10 +79,13 @@ public class Menu {
                     break;
                 case 2 :
                     System.out.println(sistema.toStringSistema());
-                    int scelta=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
-                    if(scelta==UNO){
-                        System.out.println(Utilita.leggiCategoria(sistema).toStringCategoria());
-                    }
+                    int scelta=0;
+                    do{
+                        scelta=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
+                        if(scelta==UNO) {
+                            System.out.println(Utilita.leggiCategoria(sistema).toStringCategoria());
+                        }
+                    }while(scelta==1);
                 default:
                     break;
             }
