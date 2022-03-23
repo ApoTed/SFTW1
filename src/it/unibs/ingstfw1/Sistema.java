@@ -33,9 +33,16 @@ public class Sistema {
      */
     public String toStringSistema(){
         StringBuffer stb=new StringBuffer();
+        if(listaGerarchie.isEmpty()){
+            stb.append("Il sistema non ha alcuna gerarchia");
+            return stb.toString();
+        }
+        int i=1;
         for(Gerarchia g : listaGerarchie){
+            stb.append("Gerarchia " + i +":\n");
             stb.append(g.vediRamo()+"\n");
-            stb.append("\n");
+            stb.append("\n ");
+            i++;
         }
         return stb.toString();
     }
