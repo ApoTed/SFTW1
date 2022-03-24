@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class main {
 
 	public static void main(String[] args) throws XMLStreamException {
-		// TODO Auto-generated method stubsss
+		// TODO Auto-generated method stubss
 		Utente c=new Utente("bello", "12");
 		ArrayList <Utente> l=new ArrayList<Utente>();
 		Utente test=new Utente("primo","12");
