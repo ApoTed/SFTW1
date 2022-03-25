@@ -113,4 +113,49 @@ public class XmlWriter {
         }
 
     }
+
+    public static void utentiWrite(DatiUtenti utenti) throws ParserConfigurationException {
+       try{
+           DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+           DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+           Document document = documentBuilder.newDocument();
+
+           Element datiUtenti= document.createElement("datiUtenti");
+           document.appendChild(datiUtenti);
+           for(Utente x: utenti.getListaUtenti()){
+               Element utente= document.createElement("utente");
+               datiUtenti.appendChild(utente);
+
+               //username
+               Element username=document.createElement("username");
+               username.appendChild(document.createTextNode(x.getUsername()));
+               utente.appendChild(username);
+
+
+               //password
+               Element password= document.createElement("password");
+               password.appendChild(document.createTextNode(x.getPassword()));
+               utente.appendChild(password);
+
+               //configuratore o fruitore
+               Element tipoUtente= document.createElement("tipoUtente");
+               if(x instanceof Configuratore){
+                   tipoUtente.appendChild(document.createTextNode("configuratore"));
+               }
+               else{
+                   tipoUtente.appendChild(document.createTextNode("fruitore"));
+               }
+               utente.appendChild(tipoUtente);
+
+           }
+           Transformer transformer2 = TransformerFactory.newInstance().newTransformer();
+           Result output = new StreamResult(new File("listaUtenti.xml"));
+           Source input = new DOMSource(document);
+           transformer2.transform(input, output);
+       }catch (ParserConfigurationException | TransformerConfigurationException e) {
+           e.printStackTrace();
+       } catch (TransformerException e) {
+           e.printStackTrace();
+       }
+    }
 }

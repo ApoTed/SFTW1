@@ -10,18 +10,18 @@ public class DatiUtenti {
 	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
 	public static final String INSERISCI_NOME = "Inserisci il tuo nome: ";
 	public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
-
+	public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("bello", "12");
 	private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
-	private Utente standardConf;
+	;
 
 	/**
 	 * Costruttore della classe DatiUtenti
 	 * @param _listaUtenti lista degli utenti del programma
 	 * @param _standardConf credenziale predefinite per l'accesso
 	 */
-	public DatiUtenti (ArrayList <Utente> _listaUtenti, Utente _standardConf) {
+	public DatiUtenti (ArrayList <Utente> _listaUtenti) {
 		this.listaUtenti =_listaUtenti;
-		this.standardConf=_standardConf;
+
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class DatiUtenti {
 	 */
 	public boolean checkConf(Utente u) {
 		boolean corretto=false;
-		if(Utente.sameUtente(u, this.standardConf))
+		if(Utente.sameUtente(u, CREDENZIALI_PREDEFINITE))
 			corretto=true;
 		return corretto;
 	}

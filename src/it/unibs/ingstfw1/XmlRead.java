@@ -218,4 +218,91 @@ public class XmlRead {
         Sistema sis=new Sistema(listaG);
         return sis;
     }
+
+    public static DatiUtenti leggiUtenti(String filename) throws XMLStreamException {
+        ArrayList <Utente> listaUtenti = new ArrayList<>();
+        XMLInputFactory xmlif = null;
+        XMLStreamReader xmlr = null;
+        //inizialiazzo il reader
+        try {
+            xmlif = XMLInputFactory.newInstance();
+            xmlr = xmlif.createXMLStreamReader(filename, new FileInputStream(filename));
+        } catch (Exception e) {
+            System.out.println("Errore nell'inizializzazione del reader:");
+            System.out.println(e.getMessage());
+        }
+        while(xmlr.hasNext()){
+            if(xmlr.isStartElement() && xmlr.getLocalName().equals("datiUtenti")){
+                boolean fineUtenti=false;
+                while(!fineUtenti){
+                    if(xmlr.isStartElement() && xmlr.getLocalName().equals("utente")){
+                        boolean fineUtente=false;
+                        String username=null;
+                        String password=null;
+                        String tipo=null;
+                        while(!fineUtente){
+                            if(xmlr.isStartElement() && xmlr.getLocalName().equals("username")){
+                                boolean fineUser=false;
+                                while(!fineUser){
+                                    if(xmlr.isCharacters()){
+                                        username=xmlr.getText();
+                                        fineUser=true;
+                                    }
+                                    xmlr.next();
+                                }
+                            }
+                            if(xmlr.isStartElement() && xmlr.getLocalName().equals("password")){
+                                boolean finePass=false;
+                                while(!finePass){
+                                    if(xmlr.isCharacters()){
+                                        password=xmlr.getText();
+                                        finePass=true;
+                                    }
+                                    xmlr.next();
+                                }
+                            }
+                            if(xmlr.isStartElement() && xmlr.getLocalName().equals("tipoUtente")){
+                                boolean fineTipo=false;
+                                while(!fineTipo){
+                                    if(xmlr.isCharacters()){
+                                        tipo=xmlr.getText();
+                                        fineTipo=true;
+                                    }
+                                    if(!fineTipo){
+                                        xmlr.next();
+                                    }
+                                }
+                            }
+                            if(xmlr.isEndElement() && xmlr.getLocalName().equals("utente")){
+                                fineUtente=true;
+                            }
+                            if(!fineUtente){
+                                xmlr.next();
+                            }
+
+                        }
+                        if(tipo.equals("configuratore")){
+                            Configuratore c=new Configuratore(username,password);
+                            listaUtenti.add(c);
+                        }
+                        else{
+                            Utente u=new Utente(username,password);
+                            listaUtenti.add(u);
+                        }
+
+                    }
+                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("datiUtenti"))
+                        fineUtenti=true;
+
+                    if(!fineUtenti){
+                        xmlr.next();
+                    }
+                }
+
+            }
+            xmlr.next();
+        }
+        DatiUtenti dati=new DatiUtenti(listaUtenti);
+        return dati;
+    }
 }
