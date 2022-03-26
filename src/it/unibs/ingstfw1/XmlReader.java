@@ -14,7 +14,7 @@ import java.util.HashMap;
  * Classe per la gestione della lettura di un file XML
  * @author Jacopo Tedeschi,Enrico Zambelli
  */
-public class XmlRead {
+public class XmlReader {
     /**
      * metodo per leggere i dati del sistema salvato su file xml
      * @param filename nome del file di cui si vogliono leggere i dati

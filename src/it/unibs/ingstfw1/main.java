@@ -1,11 +1,7 @@
 package it.unibs.ingstfw1;
 
-import jdk.management.jfr.FlightRecorderMXBean;
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class main {
 
@@ -17,9 +13,9 @@ public class main {
 		//DatiUtenti x=new DatiUtenti(l);
 		//x.addUtente("primo", "12", true);
 		//utente che ha eseguito l'accesso
-		DatiUtenti x=XmlRead.leggiUtenti("listaUtenti.xml");
+		DatiUtenti x= XmlReader.leggiUtenti("listaUtenti.xml");
 		Utente acceduto=x.menuAccesso();
-		Sistema sistema=XmlRead.readSis("testSalva.xml");
+		Sistema sistema= XmlReader.readSis("testSalva.xml");
 		if(acceduto instanceof Configuratore){
 			String titolo="Benvenuto nel sistema di gestione baratti";
 			String[] voci=new String[]{};
