@@ -79,11 +79,17 @@ public class Menu {
                     break;
                 case 2 :
                     System.out.println(sistema.toStringSistema());
+                    if(sistema.getListaGerarchie().size()==0){
+                        break;
+                    }
                     int scelta=0;
                     do{
                         scelta=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
                         if(scelta==1){
-                            System.out.println(Utilita.leggiCategoria(sistema).toStringCategoria());
+                            Categoria toSee=Utilita.leggiCategoria(sistema);
+                            if(toSee!=null){
+                                System.out.println(toSee.toStringCategoria());
+                            }
                         }
 
 

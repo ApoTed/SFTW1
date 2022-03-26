@@ -17,7 +17,6 @@ public class DatiUtenti {
 	/**
 	 * Costruttore della classe DatiUtenti
 	 * @param _listaUtenti lista degli utenti del programma
-	 * @param _standardConf credenziale predefinite per l'accesso
 	 */
 	public DatiUtenti (ArrayList <Utente> _listaUtenti) {
 		this.listaUtenti =_listaUtenti;
@@ -53,6 +52,20 @@ public class DatiUtenti {
 				String nameTry=Utilita.leggiStringaNonVuota(INSERISCI_NOME);
 				String passwordTry=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
 				temp=new Utente(nameTry, passwordTry);
+				if( this.checkConf(temp)) {
+					String newUsername;
+					do {
+						newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
+						if(this.checkName(newUsername)==true)
+							System.out.println("Questo nome utente non è disponibile");
+					}while(this.checkName(newUsername)==true);
+
+					String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
+					this.addUtente(newUsername, newPassword, true);
+					temp=new Configuratore(newUsername, newPassword);
+
+				}
+
 			}
 			for (Utente toCompare : this.getListaUtenti()) {
 				if( Utente.sameUtente(toCompare, temp)) {

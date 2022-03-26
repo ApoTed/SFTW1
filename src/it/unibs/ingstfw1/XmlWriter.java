@@ -24,7 +24,7 @@ public class XmlWriter {
      * metodo per salvare i dati su file xml all'inteno del package
      * @param s sistema di cui si salavano i dati
      */
-    public static void salvaSistema(Sistema s){
+    public static void salvaSistema(Sistema s, String filename){
         try{
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -96,7 +96,7 @@ public class XmlWriter {
 
             }
             Transformer transformer2 = TransformerFactory.newInstance().newTransformer();
-            Result output = new StreamResult(new File("testSalva.xml"));
+            Result output = new StreamResult(new File(filename));
             Source input = new DOMSource(document);
             transformer2.transform(input, output);
 
@@ -114,7 +114,7 @@ public class XmlWriter {
 
     }
 
-    public static void utentiWrite(DatiUtenti utenti) throws ParserConfigurationException {
+    public static void utentiWrite(DatiUtenti utenti, String filename) throws ParserConfigurationException {
        try{
            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -149,7 +149,7 @@ public class XmlWriter {
 
            }
            Transformer transformer2 = TransformerFactory.newInstance().newTransformer();
-           Result output = new StreamResult(new File("listaUtenti.xml"));
+           Result output = new StreamResult(new File(filename));
            Source input = new DOMSource(document);
            transformer2.transform(input, output);
        }catch (ParserConfigurationException | TransformerConfigurationException e) {
