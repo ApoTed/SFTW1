@@ -10,7 +10,7 @@ public class DatiUtenti {
 	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
 	public static final String INSERISCI_NOME = "Inserisci il tuo nome: ";
 	public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
-	public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("bello", "12");
+	public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("UserStandard", "PasswordStandard");
 	private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
 	;
 
@@ -115,8 +115,8 @@ public class DatiUtenti {
 
 	/**
 	 * Metodo per il controllo delle credenziali predefinite
-	 * @param u utente del quale si vuole verificare l'inseriemnto delle credenziali predefinite
-	 * @return true se le credenziali predefinite sono corrette,false altrimenti
+	 * @param u utente del quale si vuole verificare l'inserimento delle credenziali predefinite
+	 * @return true se le credenziali predefinite sono corrette, false altrimenti
 	 */
 	public boolean checkConf(Utente u) {
 		boolean corretto=false;
@@ -128,7 +128,7 @@ public class DatiUtenti {
 	/**
 	 * Metodo per verificare se uno username è già usato da un altro utente
 	 * @param name lo username di cui si vuole verificare la presenza
-	 * @return
+	 * @return true se lo username è già usato, false altrimenti
 	 */
 	public boolean checkName (String name) {
 		boolean presente=false;
@@ -140,11 +140,11 @@ public class DatiUtenti {
 	}
 
 	/**
-	 * Metodo per làaggiunta di un configuratore alla lista degli utenti
+	 * Metodo per l'aggiunta di un configuratore alla lista degli utenti
 	 * @param name username dell'utente
 	 * @param password password dell'utente
 	 * @param conf boolean che indica se l'utente è un configuratore o meno
-	 * @return
+	 * @return true se l'acce
 	 */
 	public boolean addUtente(String name, String password, boolean conf) {
 		boolean successo=false;

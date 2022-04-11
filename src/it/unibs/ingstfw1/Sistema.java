@@ -58,6 +58,7 @@ public class Sistema {
     /**
      * Metodo per la ricerca di una categoria nel sistema in base al nome passato in ingresso
      * @param nome il nome della categoria da cercare
+     * @param numGer il numero della gerarchia cercata nel sistema
      * @return la categoria cercata se presente, null altrimenti
      */
     public Categoria findCategoria(String nome, int numGer){

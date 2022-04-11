@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public class XmlReader {
     /**
-     * metodo per leggere i dati del sistema salvato su file xml
+     * Metodo per leggere i dati del sistema salvato su file xml
      * @param filename nome del file di cui si vogliono leggere i dati
      * @return sis ovvero il sistema che era salvato su file xml
      * @throws XMLStreamException
@@ -219,6 +219,12 @@ public class XmlReader {
         return sis;
     }
 
+    /**
+     * Metodo per la lettura della lista degli utenti del sistema dal file su cui sono salvati
+     * @param filename il file su cui soo salvati gli utenti
+     * @return la lista degli utenti del sistema
+     * @throws XMLStreamException
+     */
     public static DatiUtenti leggiUtenti(String filename) throws XMLStreamException {
         ArrayList <Utente> listaUtenti = new ArrayList<>();
         XMLInputFactory xmlif = null;

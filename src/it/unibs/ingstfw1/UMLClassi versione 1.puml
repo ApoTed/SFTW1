@@ -1,0 +1,135 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+
+class DatiUtenti {
+{field}{static} +CREDENZIALI_PREDEFINITE : Utente =new Configuratore("UserStandard", "PasswordStandard") {readOnly}
+{static} +INSERISCI_NOME : String = "Inserisci il tuo nome: " {readOnly}
+{static} +INSERISCI_PASSWORD : String = "Inserisci la tua password: " {readOnly}
+{static} +CATEGORIA_NON_PRESENTE : String = "Categoria non presente" {readOnly}
+-listaUtenti : ArrayList<Utente>
++DatiUtenti( _ListaUtenti : ArrayList<Utente> ) : DatiUtente
++setListaUtenti( listaUtenti : ArrayList<Utente> )
++getUtenteDaCredenziali( nome : String, password : String ) : Utente
++checkConf( u : Utente ) : boolean
++getListaUtenti() : ArrayList<Utente>
++menuAccesso() : Utente
++checkCredenziali( userName : String, password : String ) : boolean
++addUtente( nome : String, password : String, conf : boolean ) : boolean
++checkName( nome : String ) : boolean
+}
+
+class Gerarchia{
+-ramo : HashMap<Categoria,Categoria>
+-radice : Categoria
++Gerarchia( _ramo : HashMap<Categoria,Categoria> , _radice : Categoria ) : Gerarchia
++Gerarchia() : Gerarchia
+{static} +creaRamo( nomeRadice : String ) : Gerarchia
++checkNomeNuovo( s : String ) : boolean
++getRadice() : Categoria
++setRadice( radice : Categoria )
++getRamo() : HashMap<Categoria,Categoria>
++addCategoria( toAdd : Categoria, padre : Categoria ) : Gerarchia
++checkPadreNome( nome : String ) : boolean
++findPadre( nomePadre : String ) : Categoria
++vediRamo() : String
++vediPadri() : String
++numFigli( padre : Categoria ) : int
+}
+
+class CampoNativo{
+-nomeCampo : String
+-obbligatoria : boolean
++CampoNativo ( _nomeCampo : String, _obbligatoria : boolean ) : CampoNativo
+{static} +creaCampo( nameToCompare : ArrayList<String> ) : CampoNativo
++getNomeCampo() : String
++toString() : String
++isObbligatoria() : boolean
+}
+
+class Categoria{
+-descrizione : String
+-nome :String
+-campiNativi : ArrayList<CampoNativo>
++Categoria( _nome : String, _descrizione : String, _campiNativi : ArrayList<CampoNativo> ) : Categoria
++getNome() : String
++getDescrizione() : String
++getCampiNativi() : ArrayList<CampoNativo>
++toStringCategoria() : String
+{static} +creaCategoria( campi : ArrayList<CampoNativo>, nomeCat : String ) : Categoria
+}
+
+class Menu {
+{static} +UNO : int = 1 {readOnly}
+{static} +ZERO : int = 0 {readOnly}
+{static} -CORNICE : String = "--------------------------------" {readOnly}
+{static} -VOCE_USCITA : String = "0\tEsci" {readOnly}
+{static} -RICHIESTA_INSERIMENTO : String = "Digita il numero dell'opzione desiderata : " {readOnly}
+{static} -VOCI_CONFIGURATORE : String[] = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie"} {readOnly}
+-titolo : String
+-voci : String[]
++Menu( titolo : String, voci : String[] ) : Menu
++getVoci() : String[]
++StampaMenu()
++MenuConfiguratore( sistema : Sistema )
++setVoci( voci : String[] )
++scegli() : int
+}
+
+class Sistema {
+-listaGerarchie : ArrayList<Gerarchia>
++Gerarchia( _listaGerarchie : ArrayList<Gerarchia> ) : Sistema
++checkNomeNuovoRadice( s : String ) : boolean
++toStringSistema() : String
++addGerarchia( g : Gerarchia )
++findCategoria( nome : String, numGer : int ) : Categoria
++getListaCategorie() : ArrayList<Gerarchia>
+}
+
+class Utilita {
+{static} -ERRORE_FORMATO : String = "Attenzione il dato inserito non e' nel formato corretto" {readOnly}
+{static} -ERRORE_MASSIMO : String = "Attenzione: e' richiesto un valore minore o uguale a " {readOnly}
+{static} -ERRORE_MINIMO : String = "Attenzione: e' richiesto un valore maggiore o uguale a " {readOnly}
+{static} +ERRORE_STRINGA_VUOTA : String = "La stringa inserita non può essere vuota" {readOnly}
+{static} +CATEGORIA_NON_PRESENTE : String = "Categoria non presente" {readOnly}
+{static} -lettore : Scanner
+{static} -creaScanner() : Scanner
+{static} +leggiCategoria ( sistema : Sistema ) : Categoria
+{static} +leggiStringaNonVuota( messaggio : String ) : String
+{static} +leggiStringa( messaggio : String ) : String
+{static} +leggintero( messaggio : String ) : int
+{static} +leggintero( messaggio : String, minimo : int, massimo : int ) : int
+}
+
+class Utente {
+-username : String
+-password : String
++Utente ( _username : String, _password : String ) : Utente
++getUsername() : String
++setUsername ( username : String)
++getPassword() : String
++setPassword( password : String )
+{static} +sameUtente ( u1 : Utente, u2 : Utente ) : boolean
+}
+
+class Configuratore {
++Configuratore ( _username : String, _password : String ) : Configuratore
+}
+
+Utente <|-- Configuratore
+
+class XmlWriter {
+{static} +salvaSistema ( s : Sistema, fileName : String )
+{static} +utentiWrite ( utenti : DatiUtenti, fileName : String )
+}
+
+class XmlReader {
+{static} +leggiUtenti ( fileName : String ) : DatiUtenti
+{static} +readSis ( fileName : String ) : Sistema
+}
+
+class Main {
+{static} +main( args : String[] )
+}
+@enduml

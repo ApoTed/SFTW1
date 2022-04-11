@@ -1,7 +1,5 @@
 package it.unibs.ingstfw1;
 
-import java.util.ArrayList;
-
 /**
  * Classe per la gestione dei menu
  *  @author Jacopo Tedeschi,Enrico Zambelli
@@ -11,7 +9,7 @@ public class Menu {
     final private static String CORNICE = "--------------------------------";
     final private static String VOCE_USCITA = "0\tEsci";
     final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata : ";
-    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie"};
+    final private static String[] VOCI_CONFIGURATORE = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie"};
     public static final int ZERO = 0;
     public static final int UNO = 1;
 
@@ -59,7 +57,7 @@ public class Menu {
      */
     public void MenuConfiguratore(Sistema sistema){
         int risposta;
-        this.setVoci(VOCI_Configuratore);
+        this.setVoci(VOCI_CONFIGURATORE);
         do {
             risposta = this.scegli();
             switch (risposta){

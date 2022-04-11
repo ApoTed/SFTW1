@@ -27,7 +27,7 @@ public class CampoNativo {
 	 * @return il campo nativo creato
 	 */
 	public static CampoNativo creaCampo(ArrayList <String> nameToCompare){
-		String nome=Utilita.leggiStringaNonVuota("inserisci nome campo");
+		String nome=Utilita.leggiStringaNonVuota("Inserisci nome campo");
 		boolean diverso=false;
 		while(diverso==false){
 

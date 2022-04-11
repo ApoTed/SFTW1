@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class XmlWriter {
     /**
-     * metodo per salvare i dati su file xml all'inteno del package
+     * metodo per salvare i dati su file xml all'interno del package
      * @param s sistema di cui si salavano i dati
      */
     public static void salvaSistema(Sistema s, String filename){
