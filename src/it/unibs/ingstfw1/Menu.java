@@ -59,7 +59,12 @@ public class Menu {
         int risposta;
         this.setVoci(VOCI_CONFIGURATORE);
         do {
-            risposta = this.scegli();
+            if(sistema.getListaGerarchie().size()==0){
+                risposta=1;
+                System.out.println("Il sistema non presenta alcuna gerarchia, inserisci una gerarchia, in futuro potrai aggiungerne altre");
+            }
+            else
+                risposta = this.scegli();
             switch (risposta){
                 case 1 :
                     String nomeRadice;
