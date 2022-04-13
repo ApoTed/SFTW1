@@ -25,7 +25,7 @@ public class DatiUtenti {
 
 	/**
 	 * metodo per la gestione dell'accesso
-	 * @return l'utente che ha eseguito correttamente l'accesso null se l'accesso è fallisto
+	 * @return l'utente che ha eseguito correttamente l'accesso null se l'accesso è fallito
 	 */
 	public Utente menuAccesso() {
 		boolean successo=false;
@@ -33,16 +33,7 @@ public class DatiUtenti {
 		String password=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
 		Utente temp= new Utente(username, password);
 		if( this.checkConf(temp)) {
-			String newUsername;
-			do {
-				newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
-				if(this.checkName(newUsername)==true)
-					System.out.println("Questo nome utente non è disponibile");
-			}while(this.checkName(newUsername)==true);
-
-			String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
-			this.addUtente(newUsername, newPassword, true);
-			temp=new Configuratore(newUsername, newPassword);
+			temp = nuovoConfiguratore();
 
 		}
 		for (int i=0;i<3;i++) {
@@ -53,17 +44,7 @@ public class DatiUtenti {
 				String passwordTry=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
 				temp=new Utente(nameTry, passwordTry);
 				if( this.checkConf(temp)) {
-					String newUsername;
-					do {
-						newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
-						if(this.checkName(newUsername)==true)
-							System.out.println("Questo nome utente non è disponibile");
-					}while(this.checkName(newUsername)==true);
-
-					String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
-					this.addUtente(newUsername, newPassword, true);
-					temp=new Configuratore(newUsername, newPassword);
-
+					temp = nuovoConfiguratore();
 				}
 
 			}
@@ -93,6 +74,25 @@ public class DatiUtenti {
 		}
 		return temp;
 
+	}
+
+	/**
+	 * Metodo che restituisce un nuovo fruitore che si registra al sistema
+	 * @return il nuovo configuratore con credenziali inserite da tastiera
+	 */
+	public Utente nuovoConfiguratore() {
+		Utente temp;
+		String newUsername;
+		do {
+			newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente:");
+			if(this.checkName(newUsername)==true)
+				System.out.println("Questo nome utente non è disponibile");
+		}while(this.checkName(newUsername)==true);
+
+		String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password:");
+		this.addUtente(newUsername, newPassword, true);
+		temp=new Configuratore(newUsername, newPassword);
+		return temp;
 	}
 
 	/**

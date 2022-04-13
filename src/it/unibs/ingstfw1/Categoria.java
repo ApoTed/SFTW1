@@ -34,7 +34,7 @@ public class Categoria {
 	 * @param nomeCat il nome della categoria
 	 * @return la categoria creata
 	 */
-	public static Categoria creaCategoria(ArrayList<CampoNativo> campi, String nomeCat){//devo ritornare una categoria
+	public static Categoria creaCategoria(ArrayList<CampoNativo> campi, String nomeCat){
 
 		ArrayList <CampoNativo> copia=new ArrayList<>();
 		copia.addAll(campi);

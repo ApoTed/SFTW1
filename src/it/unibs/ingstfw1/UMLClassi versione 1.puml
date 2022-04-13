@@ -18,6 +18,7 @@ class DatiUtenti {
 +checkCredenziali( userName : String, password : String ) : boolean
 +addUtente( nome : String, password : String, conf : boolean ) : boolean
 +checkName( nome : String ) : boolean
++nuovoConfiguratore() : Utente
 }
 
 class Gerarchia{
