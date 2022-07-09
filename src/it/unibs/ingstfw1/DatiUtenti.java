@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Classe per la gestione degli utenti del sistema
- * @author Jacopo Tedeschi,Enrico Zambelli
+ * @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class DatiUtenti {
 	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
@@ -24,7 +24,7 @@ public class DatiUtenti {
 	}
 
 	/**
-	 * metodo per la gestione dell'accesso
+	 * Metodo per la gestione dell'accesso
 	 * @return l'utente che ha eseguito correttamente l'accesso null se l'accesso è fallito
 	 */
 	public Utente menuAccesso() {
@@ -172,6 +172,12 @@ public class DatiUtenti {
 		this.listaUtenti = listaUtenti;
 	}
 
+	/**
+	 * Metodo che restituisce l'utente in base alle credenziali
+	 * @param name username dell'utente
+	 * @param password password dell'utente
+	 * @return l'utente con le credenziali inserite, null se non esiste
+	 */
 	public Utente getUtenteDaCredenziali(String name, String password){
 		for(Utente x: this.listaUtenti){
 			if(x.getUsername().equals(name) && x.getPassword().equals(password)){

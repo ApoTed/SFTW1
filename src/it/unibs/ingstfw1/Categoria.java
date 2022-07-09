@@ -7,10 +7,8 @@ import java.util.ArrayList;
  * @author Jacopo Tedeschi,Enrico Zambelli
  */
 public class Categoria {
+
 	private String nome;
-
-
-
 	private String descrizione;
 	private ArrayList <CampoNativo> campiNativi= new ArrayList <CampoNativo>();
 

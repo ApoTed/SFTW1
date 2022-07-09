@@ -114,6 +114,12 @@ public class XmlWriter {
 
     }
 
+    /**
+     * Metodo per la scrittura degli utenti su file XML
+     * @param utenti gli utenti da inserire
+     * @param filename il nome del file dove salvare gli utenti
+     * @throws ParserConfigurationException
+     */
     public static void utentiWrite(DatiUtenti utenti, String filename) throws ParserConfigurationException {
        try{
            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
