@@ -10,7 +10,7 @@ public class DatiUtenti {
 	public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
 	public static final String INSERISCI_NOME = "Inserisci il tuo nome: ";
 	public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
-	public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("UserStandard", "PasswordStandard");
+	public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("admin", "ezjt9917");
 	private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
 	;
 
